@@ -1,7 +1,7 @@
-package controller;
+package imb.progra2.cosmicleague.controller;
 import java.util.List;
 
-public class APIResponse {
+public class APIResponse<T> {
 
 	private int status;
 	private List<String> messages;
