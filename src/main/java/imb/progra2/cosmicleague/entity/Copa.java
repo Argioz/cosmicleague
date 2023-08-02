@@ -29,8 +29,18 @@ public class Copa {
     @OneToMany(mappedBy = "copa", cascade = CascadeType.ALL)
     private List<Partida> partidas = new ArrayList<>();
 
+    @OneToMany(mappedBy = "copaGanada")
+    private List<Jugador> jugadoresQueGanaron;
     
-    public List<Partida> getPartidas() {
+    public List<Jugador> getJugadoresQueGanaron() {
+		return jugadoresQueGanaron;
+	}
+
+	public void setJugadoresQueGanaron(List<Jugador> jugadoresQueGanaron) {
+		this.jugadoresQueGanaron = jugadoresQueGanaron;
+	}
+
+	public List<Partida> getPartidas() {
 		return partidas;
 	}
 

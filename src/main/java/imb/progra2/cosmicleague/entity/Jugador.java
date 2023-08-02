@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -36,7 +37,19 @@ public class Jugador {
                 inverseJoinColumns = @JoinColumn(name = "partida_id"))
     private List<Partida> partidas = new ArrayList<>();
     
-    public Long getId() {
+    @ManyToOne
+    @JoinColumn(name = "copa_ganada_id")
+    private Copa copaGanada;
+    
+    public Copa getCopaGanada() {
+		return copaGanada;
+	}
+
+	public void setCopaGanada(Copa copaGanada) {
+		this.copaGanada = copaGanada;
+	}
+
+	public Long getId() {
         return id;
     }
 

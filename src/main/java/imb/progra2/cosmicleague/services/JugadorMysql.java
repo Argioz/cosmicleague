@@ -60,11 +60,10 @@ public class JugadorMysql implements IJugadorService{
 	        jugadorExistente.setDireccion(jugadorModificado.getDireccion());
 	        jugadorExistente.setColor(jugadorModificado.getColor());
 	        jugadorExistente.setPartidas(jugadorModificado.getPartidas());
-	        
+	        jugadorExistente.setCopaGanada(jugadorModificado.getCopaGanada());
 	        return repo.save(jugadorExistente);
 	    } else {
 	        return null;
 	    }
 	}
-
 }

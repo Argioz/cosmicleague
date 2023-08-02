@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import imb.progra2.cosmicleague.entity.Jugador;
-import imb.progra2.cosmicleague.entity.Partida;
 import imb.progra2.cosmicleague.services.IJugadorService;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -80,27 +79,7 @@ public class JugadorController {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
 	    }
 	}
-
-	@PutMapping("/Jugador/{jugadorId}/partidas")
-	public ResponseEntity<APIResponse<Jugador>> cargarPartidasAJugador(
-	    @PathVariable Long jugadorId,
-	    @RequestBody List<Partida> partidas
-	) {
-	    Jugador jugadorPorID = service.buscarPorId(jugadorId);
-	    if (jugadorPorID == null) {
-	        List<String> messages = new ArrayList<>();
-	        messages.add("No se encontró un Jugador con ID: " + jugadorId);
-	        APIResponse<Jugador> response = new APIResponse<Jugador>(HttpStatus.NOT_FOUND.value(), messages, null);
-	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
-	    }
-
-	    jugadorPorID.setPartidas(partidas);
-	    service.modificarJugador(jugadorPorID);
-
-	    APIResponse<Jugador> response = new APIResponse<Jugador>(HttpStatus.OK.value(), null, jugadorPorID);
-	    return ResponseEntity.status(HttpStatus.OK).body(response);
-	}
-
+	
 	@DeleteMapping("/Jugador/{id}")
 	public ResponseEntity<APIResponse<Jugador>> eliminar(@PathVariable("id") Long id) {
 	    Jugador jugadorPorId = service.buscarPorId(id);
